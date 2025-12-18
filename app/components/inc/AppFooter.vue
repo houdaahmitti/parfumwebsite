@@ -10,14 +10,15 @@
           </div>
         </div>
         
-        <div class="col-lg-4 col-1">
+        <div class="col-md-6 col-lg-4 text-center footer-contact d-flex flex-column">
+         <div class="footer-contact-inner">
           <div class="footer_title">Contactez-nous</div>
           <div class="newsletter_container">
             <ul class="footer_list">
               <li><a href="mailto:testtest@gmail.com"><i class="icofont-email"></i> &nbsp;  LovePafum@gmail.com</a></li>
               <li><a href="tel://0500000000"><i class="icofont-phone"></i> &nbsp; +212 666126743</a></li>
             </ul>
-            <div class="social-icons mt-2">
+            <div class="social-icons mt-2 ">
               <a href="https://www.facebook.com" target="_blank" class="text-white me-3">
                 <i class="fa-brands fa-facebook-f"></i>
               </a>
@@ -29,6 +30,7 @@
               </a>
             </div>
           </div>
+        </div>
         </div>
       </div>
       <div class="footer-bottom">
@@ -53,6 +55,7 @@ footer {
   font-weight: bold;
   margin-bottom: 10px;
   font-size: 18px;
+  text-align: center;
 }
 .footer-bottom {
   text-align: center;       
@@ -86,11 +89,19 @@ footer {
 
 .desc {
   font-size: 14px;
-  line-height: 1.5;
+  line-height: 1.7;
+   text-align: justify;    
+  text-justify: inter-word; 
+   max-width: 500px;
+    margin: 0 auto; 
 }
+
+
+
 .social-icons i {
   font-size: 20px;
   transition: color 0.3s;
+  
 }
 .social-icons a:hover i {
   color: #6d3a53; /* exemple rose au hover */
