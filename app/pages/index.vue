@@ -41,7 +41,7 @@
             <!-- Avantages Section -->
             <div class="row text-center mt-5">
                 <div class="col-md-3">
-                    <img src="/img/icone-livraison.webp" alt="Livraison Express" style="width:50px; height:50px;">
+                    <img src="/img/icone-livraison.webp" alt="Livraison Express" style="width:70px; height:60px;">
                     <h5 class="mt-3">LIVRAISON EXPRESS</h5>
                     <p>Entre 24 et 48 heures partout au Maroc</p>
                 </div>
@@ -61,6 +61,11 @@
                     <p>5% de votre commande sur vos prochains achats</p>
                 </div>
             </div>
+            <div class="text-end mt-4">
+            <NuxtLink to="/about" class="details-btn">
+                Details
+            </NuxtLink>
+            </div>
         </div>
 
 
@@ -69,45 +74,47 @@
                     <div class="row">
 
                         <div class="col-md-12 text-center">
-                            <h1 class="main-heading">our Service</h1>
+                            <h1 class="main-heading">Our Service</h1>
                             <div class="underline mx-auto"></div>
                         </div>
 
-                       <div class="col-md-4">
-                         <div class="box-card">
-                            <img src="/img/parfum/5.webp" class="w-100" alt="web parfume">
-                            <div class="box-card-body">
-                            <h3 class="box-card-heading"></h3>
-                            <div class="underline"></div>
-                            <p>Lorem ipsum dolor sit amet.
-                            </p>
-                         </div>
-                         </div>   
-                        </div>
+                            <div class="col-md-4">
+                            <div class="box-card">
+                                <div class="box-card-img">
+                                <img src="/img/parfum/5.webp" class="w-100" alt="web parfum">
+                                <button class="add-to-cart">AJOUTER AU PANIER</button>
+                                </div>
+                                <div class="box-card-body">
+                                <h3 class="box-card-heading">Champ De Rose Jacques Yves</h3>
+                                <div class="underline"></div>
+                                <p>Fragrance World Parfum Femme 100ml - 199,00 د.م</p>
+                                </div>
+                            </div>   
+                            </div>
 
-                        <div class="col-md-4">
-                         <div class="box-card">
-                            <img src="/img/parfum/3.webp" class="w-100" alt="web parfume">
-                            <div class="box-card-body">
-                            <h3 class="box-card-heading"></h3>
-                            <div class="underline"></div>
-                            <p>Lorem ipsum dolor sit amet.. 
-                            </p>
-                         </div>
-                         </div>   
-                        </div>
+                            <div class="col-md-4">
+                            <div class="box-card">
+                                <img src="/img/parfum/3.webp" class="w-100" alt="web parfume">
+                                <div class="box-card-body">
+                                <h3 class="box-card-heading"></h3>
+                                <div class="underline"></div>
+                                <p>Lorem ipsum dolor sit amet.. 
+                                </p>
+                            </div>
+                            </div>   
+                            </div>
 
-                         <div class="col-md-4">
-                         <div class="box-card">
-                            <img src="/img/parfum/4.webp" class="w-100" alt="web parfume">
-                            <div class="box-card-body">
-                            <h3 class="box-card-heading"></h3>
-                            <div class="underline"></div>
-                            <p>Lorem ipsum dolor sit amet.. 
-                            </p> 
-                         </div>
-                         </div>   
-                        </div>
+                            <div class="col-md-4">
+                            <div class="box-card">
+                                <img src="/img/parfum/4.webp" class="w-100" alt="web parfume">
+                                <div class="box-card-body">
+                                <h3 class="box-card-heading"></h3>
+                                <div class="underline"></div>
+                                <p>Lorem ipsum dolor sit amet.. 
+                                </p> 
+                            </div>
+                            </div>   
+                            </div>
 
                    </div>
                 </div>
@@ -130,10 +137,59 @@
 </script>
 
 <style>
-    .carousel-inner img {
+.carousel-inner img {
        width: 90%; 
       height:70vh; 
       object-fit:contain; 
       background: linear-gradient(135deg, #0d1b2a, #274c91); /* gradient bleu foncé */
-    }
+}
+.box-card-img {
+  position: relative;
+  overflow: hidden;
+}
+
+.box-card-img img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.add-to-cart {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 12px;
+  background-color: rgba(0, 128, 0, 0.7); /* vert transparent */
+  color: #fff;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  text-transform: uppercase;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.box-card-img:hover .add-to-cart {
+  opacity: 1;
+}
+.details-btn {
+    display: inline-block;
+    padding: 12px 30px;
+    background-color: #0e4c92; /* couleur principale */
+    color: #fff;
+    font-weight: bold;
+    text-transform: uppercase;
+    border-radius: 25px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+}
+
+.details-btn:hover {
+    background-color: #07366f; /* couleur hover plus foncée */
+    transform: translateY(-3px);
+    box-shadow: 0 6px 10px rgba(0,0,0,0.3);
+}
+
 </style>

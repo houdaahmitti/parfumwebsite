@@ -15,8 +15,8 @@
           <div class="footer_title">Contactez-nous</div>
           <div class="newsletter_container">
             <ul class="footer_list">
-              <li><a href="mailto:testtest@gmail.com"><i class="icofont-email"></i> &nbsp;  LovePafum@gmail.com</a></li>
-              <li><a href="tel://0500000000"><i class="icofont-phone"></i> &nbsp; +212 666126743</a></li>
+              <li><a href="mailto:testtest@gmail.com"><i class="fas fa-envelope"></i> &nbsp;  Email: LovePafum@gmail.com</a></li>
+              <li><a href="tel://0500000000"><i class="fas fa-phone"></i> &nbsp; Tel: +212 666126743</a></li>
             </ul>
             <div class="social-icons mt-2 ">
               <a href="https://www.facebook.com" target="_blank" class="text-white me-3">
