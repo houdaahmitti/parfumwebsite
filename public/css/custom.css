@@ -5,42 +5,114 @@
 }
 .underline {
     height: 4px;
-    width: 88px;
-    background-color: brown;
+    width: 150px;
+    background-color: rgb(42, 29, 177);
     border-radius: 8px;
     margin-bottom: 16px;
 }
 .bg-gray {
   background-color: #f2f2f2;
 }
-
-.box-card {
-  background-color: #ffffff;
-  box-shadow: 4px 8px 20px rgba(0, 0, 0, 0.15);
-  border-radius: 20px;
-  border: 1px solid #e6e6e6;
+.alt-style {
+  border-radius: 16px;
+  overflow: hidden;
+  background: #fff;
+  border: 1px solid #f0f0f0;
+  transition: 0.4s ease;
+  max-width: none;
+  margin: 0;
 }
 
-.box-card img {
-  height: 250px;
-  object-fit: contain;
-  margin: 0 auto;
-  display: block;
+.alt-style:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.12);
 }
 
-.box-card-body {
-   padding: 16px 20px;
+/* IMAGE */
+.product-image {
+  height: 220px;           
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fafafa;
 }
 
-.box-card .box-card-heading {
-  font-size: 20px;
-  color: #2e2b6f;
-  font-weight: bold;
-  margin-bottom: 12px;
+.product-image img {
+  max-height: 100%;
+  max-width: 100%;
+  object-fit: contain;    
 }
 
-.box-card .box-card-body p {
+.alt-style .product-image {
+  position: relative;
+}
+
+.alt-style img {
+  width: 100%;
+  transition: 0.4s ease;
+}
+
+.alt-style:hover img {
+  filter: blur(2px);
+  transform: scale(1.05);
+}
+
+/* OVERLAY */
+.alt-style .overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: 0.3s ease;
+}
+
+.alt-style:hover .overlay {
+  opacity: 1;
+}
+
+/* BUTTON */
+.alt-style .btn-cart {
+  padding: 12px 24px;
+  border-radius: 30px;
+  border: none;
+  background: #fff;
+  color: #2a139f;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.alt-style .btn-cart i {
+  margin-right: 8px;
+}
+
+.alt-style .btn-cart:hover {
+  background: #360893;
+  color: #fff;
+}
+
+/* BODY */
+.alt-style .product-body {
+  padding: 20px;
+  text-align: center;
+}
+
+.alt-style h3 {
+  font-size: 17px;
+  margin-bottom: 6px;
+}
+
+.alt-style p {
   font-size: 14px;
-  font-weight: 400;
-  color: #888888;
+  color: #7796a7;
 }
+
+.alt-style .price {
+  display: block;
+  margin-top: 10px;
+  font-weight: bold;
+}
+

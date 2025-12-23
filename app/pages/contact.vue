@@ -95,11 +95,22 @@ body {
 
 /* ---- TITLE ---- */
 .contact-container h1 {
-  color: rgb(14, 5, 46);
   font-size: 40px;
-  margin-bottom: 20px;
-  text-shadow: 0 2px 6px rgba(0,0,0,0.4);
+  font-weight: 700;
+  text-align: center;
+  background: linear-gradient(90deg, #210B5B, #5C3AFF);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 30px;
+  text-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  letter-spacing: 1px;
+  transition: transform 0.3s ease;
 }
+
+.contact-container h1:hover {
+  transform: translateY(-5px);
+}
+
 
 /* ---- BOX ---- */
 .contact-box {
@@ -121,15 +132,13 @@ body {
 }
 
 /* ---- INPUTS ---- */
-.contact-box input,
-.contact-box textarea,
-.contact-box select {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 18px;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-  background: rgba(255,255,255,0.9);
+.contact-box input:focus,
+.contact-box textarea:focus,
+.contact-box select:focus {
+  border-color: #210B5B;
+  box-shadow: 0 0 8px rgba(33,11,91,0.3);
+  outline: none;
+  background: rgba(255,255,255,1);
 }
 
 /* ---- CHECKBOX ---- */
@@ -141,18 +150,22 @@ body {
 /* ---- BUTTON ---- */
 .btn-red {
   width: 100%;
-  padding: 12px;
+  padding: 14px;
   background: #1e3b6e;
   border: none;
   color: white;
   font-size: 18px;
-  border-radius: 10px;
+  font-weight: 600;
+  border-radius: 12px;
   cursor: pointer;
-  transition: 0.3s;
+  transition: 0.3s ease, transform 0.2s ease;
 }
 
 .btn-red:hover {
-  background: rgb(12, 41, 205);
+  background: rgb(12,41,205);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(12,41,205,0.3);
 }
+
 
 </style>

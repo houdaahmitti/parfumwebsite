@@ -11,7 +11,7 @@ export default defineNuxtConfig({
         meta: [
           { charset: 'utf-8' },
           { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-          { hid: 'description', name: 'description', content: 'Love Parfum' },
+          { name: 'description', content: 'Love Parfum' },
           { name: 'format-detection', content: 'telephone=no' }
         ],
         link: [
@@ -30,7 +30,7 @@ export default defineNuxtConfig({
       },
     ],
     css: [
-      '@fortawesome/fontawesome-free/css/all.css'
+      '@fortawesome/fontawesome-free/css/all.min.css'
     ]
     
 })

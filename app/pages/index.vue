@@ -1,31 +1,54 @@
 <template>
-    <div>
-        <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="1500">
-            <div class="carousel-indicators">
-                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
-            </div>
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                <img src="/img/PAGE1.png" class="d-block w-100" alt="slide 1">
-                </div>
-                <div class="carousel-item">
-                <img src="/img/PAGE2.png" class="d-block w-100" alt="slide 2">
-                </div>
-                <div class="carousel-item">
-                <img src="/img/PAGE3.png" class="d-block w-100" alt="slide 3">
-                </div>
-            </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </button>
+                <div id="carouselHero" class="carousel slide carousel-fade hero-carousel" data-bs-ride="carousel" data-bs-interval="3000">
+
+                    <!-- Indicators -->
+                    <div class="carousel-indicators hero-indicators">
+                        <button type="button" data-bs-target="#carouselHero" data-bs-slide-to="0" class="active"></button>
+                        <button type="button" data-bs-target="#carouselHero" data-bs-slide-to="1"></button>
+                        <button type="button" data-bs-target="#carouselHero" data-bs-slide-to="2"></button>
+                    </div>
+
+                    <!-- Slides -->
+                    <div class="carousel-inner">
+
+                        <div class="carousel-item active">
+                        <img src="/img/page1.1.jpg" class="d-block w-100" alt="slide 1">
+                        <div class="carousel-overlay">
+                            <h2>Love Parfum</h2>
+                            <p>Découvrez l’élégance absolue</p>
+                        </div>
+                        </div>
+
+                        <div class="carousel-item">
+                        <img src="/img/page1.2.jpg" class="d-block w-100" alt="slide 2">
+                        <div class="carousel-overlay">
+                            <h2>Parfums d’Exception</h2>
+                            <p>Une signature qui vous ressemble</p>
+                        </div>
+                        </div>
+
+                        <div class="carousel-item">
+                        <img src="/img/page1.3.jpg" class="d-block w-100" alt="slide 3">
+                        <div class="carousel-overlay">
+                            <h2>Luxe & Authenticité</h2>
+                            <p>Des marques iconiques</p>
+                        </div>
+                        </div>
         </div>
+
+        <!-- Controls -->
+        <button class="carousel-control-prev hero-control" type="button"
+                data-bs-target="#carouselHero" data-bs-slide="prev">
+            ‹
+        </button>
+
+        <button class="carousel-control-next hero-control" type="button"
+                data-bs-target="#carouselHero" data-bs-slide="next">
+            ›
+        </button>
+
+        </div>
+
         
         <div class="py-5 container">
             <div class="row">
@@ -68,58 +91,86 @@
             </div>
         </div>
 
-
             <div class="py-5 bg-gray">
                 <div class="container">
                     <div class="row">
 
                         <div class="col-md-12 text-center">
-                            <h1 class="main-heading">Our Service</h1>
+                            <h1 class="main-heading">Parfum</h1>
                             <div class="underline mx-auto"></div>
+                        </div>  
+
+                        <div class="col-md-4">
+                        <div class="product-card alt-style">
+
+                            <div class="product-image">
+                            <img src="/img/parfum/Bleu de Chanel.webp" alt="Bleu de Chanel">
+
+                            <div class="overlay">
+                                <button class="btn-cart">
+                                <i class="fas fa-shopping-cart"></i> Ajouter au panier
+                                </button>
+                            </div>
+                            </div>
+
+                            <div class="product-body">
+                            <h3>Bleu de Chanel</h3>
+                            <p>Parfum Homme · 100ml</p>
+                            <span class="price">199,00 DH</span>
+                            </div>
+
+                        </div>
                         </div>
 
-                            <div class="col-md-4">
-                            <div class="box-card">
-                                <div class="box-card-img">
-                                <img src="/img/parfum/5.webp" class="w-100" alt="web parfum">
-                                <button class="add-to-cart">AJOUTER AU PANIER</button>
-                                </div>
-                                <div class="box-card-body">
-                                <h3 class="box-card-heading">Champ De Rose Jacques Yves</h3>
-                                <div class="underline"></div>
-                                <p>Fragrance World Parfum Femme 100ml - 199,00 د.م</p>
-                                </div>
-                            </div>   
+                        <div class="col-md-4">
+                        <div class="product-card alt-style">
+
+                            <div class="product-image">
+                            <img src="/img/parfum/Chanel_n5.webp" alt="Chanel_n5">
+
+                            <div class="overlay">
+                                <button class="btn-cart">
+                                <i class="fas fa-shopping-cart"></i> Ajouter au panier
+                                </button>
+                            </div>
                             </div>
 
-                            <div class="col-md-4">
-                            <div class="box-card">
-                                <img src="/img/parfum/3.webp" class="w-100" alt="web parfume">
-                                <div class="box-card-body">
-                                <h3 class="box-card-heading"></h3>
-                                <div class="underline"></div>
-                                <p>Lorem ipsum dolor sit amet.. 
-                                </p>
-                            </div>
-                            </div>   
+                            <div class="product-body">
+                            <h3>Chanel N5</h3>
+                            <p>Parfum Femme · 100ml</p>
+                            <span class="price">299,00 DH</span>
                             </div>
 
-                            <div class="col-md-4">
-                            <div class="box-card">
-                                <img src="/img/parfum/4.webp" class="w-100" alt="web parfume">
-                                <div class="box-card-body">
-                                <h3 class="box-card-heading"></h3>
-                                <div class="underline"></div>
-                                <p>Lorem ipsum dolor sit amet.. 
-                                </p> 
+                        </div>
+                        </div>
+
+
+                        <div class="col-md-4">
+                        <div class="product-card alt-style">
+
+                            <div class="product-image">
+                            <img src="/img/parfum/dior-jadore.webp" alt="dior-jadore">
+
+                            <div class="overlay">
+                                <button class="btn-cart">
+                                <i class="fas fa-shopping-cart"></i> Ajouter au panier
+                                </button>
                             </div>
-                            </div>   
                             </div>
+
+                            <div class="product-body">
+                            <h3>Dior J’adore</h3>
+                            <p>Parfum Femme · 50ml</p>
+                            <span class="price">200,00 DH</span>
+                            </div>
+
+                        </div>
+                        </div>
+
 
                    </div>
                 </div>
            </div>
-    </div>
 </template>
 <script>
     export default {
@@ -137,42 +188,98 @@
 </script>
 
 <style>
-.carousel-inner img {
-       width: 90%; 
-      height:70vh; 
-      object-fit:contain; 
-      background: linear-gradient(135deg, #0d1b2a, #274c91); /* gradient bleu foncé */
-}
-.box-card-img {
-  position: relative;
+/* GLOBAL */
+.hero-carousel {
+  border-radius: 24px;
   overflow: hidden;
+  box-shadow: 0 25px 60px rgba(0,0,0,0.25);
 }
 
-.box-card-img img {
-  display: block;
-  width: 100%;
-  height: auto;
+/* IMAGE */
+.hero-carousel img {
+  height: 70vh;
+  object-fit: cover;
 }
 
-.add-to-cart {
+/* OVERLAY */
+.carousel-overlay {
   position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  padding: 12px;
-  background-color: rgba(0, 128, 0, 0.7); /* vert transparent */
+  inset: 0;
+  background: linear-gradient(
+    to right,
+    rgba(0,0,0,0.55),
+    rgba(0,0,0,0.15)
+  );
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 8%;
   color: #fff;
-  font-weight: bold;
-  border: none;
-  cursor: pointer;
-  text-transform: uppercase;
-  opacity: 0;
-  transition: opacity 0.3s;
 }
 
-.box-card-img:hover .add-to-cart {
-  opacity: 1;
+/* TEXT */
+.carousel-overlay h2 {
+  font-size: 52px;
+  font-weight: 900;
+  margin-bottom: 12px;
+  letter-spacing: 1px;
 }
+
+.carousel-overlay p {
+  font-size: 20px;
+  max-width: 420px;
+  opacity: 0.9;
+}
+
+/* INDICATORS */
+.hero-indicators button {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #fff;
+  opacity: 0.4;
+  transition: 0.3s;
+}
+
+.hero-indicators .active {
+  opacity: 1;
+  transform: scale(1.4);
+}
+
+/* CONTROLS */
+.hero-control {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.25);
+  color: white;
+  font-size: 32px;
+  border: none;
+  top: 50%;
+  transform: translateY(-50%);
+  backdrop-filter: blur(6px);
+  transition: 0.3s;
+}
+
+.hero-control:hover {
+  background: rgba(255,255,255,0.45);
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .hero-carousel img {
+    height: 50vh;
+  }
+
+  .carousel-overlay h2 {
+    font-size: 32px;
+  }
+
+  .carousel-overlay p {
+    font-size: 16px;
+  }
+}
+
 .details-btn {
     display: inline-block;
     padding: 12px 30px;
@@ -191,5 +298,6 @@
     transform: translateY(-3px);
     box-shadow: 0 6px 10px rgba(0,0,0,0.3);
 }
+ 
 
 </style>
