@@ -1,55 +1,4 @@
 <template>
-                <div id="carouselHero" class="carousel slide carousel-fade hero-carousel" data-bs-ride="carousel" data-bs-interval="3000">
-
-                    <!-- Indicators -->
-                    <div class="carousel-indicators hero-indicators">
-                        <button type="button" data-bs-target="#carouselHero" data-bs-slide-to="0" class="active"></button>
-                        <button type="button" data-bs-target="#carouselHero" data-bs-slide-to="1"></button>
-                        <button type="button" data-bs-target="#carouselHero" data-bs-slide-to="2"></button>
-                    </div>
-
-                    <!-- Slides -->
-                    <div class="carousel-inner">
-
-                        <div class="carousel-item active">
-                        <img src="/img/page1.1.jpg" class="d-block w-100" alt="slide 1">
-                        <div class="carousel-overlay">
-                            <h2>Love Parfum</h2>
-                            <p>Découvrez l’élégance absolue</p>
-                        </div>
-                        </div>
-
-                        <div class="carousel-item">
-                        <img src="/img/page1.2.jpg" class="d-block w-100" alt="slide 2">
-                        <div class="carousel-overlay">
-                            <h2>Parfums d’Exception</h2>
-                            <p>Une signature qui vous ressemble</p>
-                        </div>
-                        </div>
-
-                        <div class="carousel-item">
-                        <img src="/img/page1.3.jpg" class="d-block w-100" alt="slide 3">
-                        <div class="carousel-overlay">
-                            <h2>Luxe & Authenticité</h2>
-                            <p>Des marques iconiques</p>
-                        </div>
-                        </div>
-        </div>
-
-        <!-- Controls -->
-        <button class="carousel-control-prev hero-control" type="button"
-                data-bs-target="#carouselHero" data-bs-slide="prev">
-            ‹
-        </button>
-
-        <button class="carousel-control-next hero-control" type="button"
-                data-bs-target="#carouselHero" data-bs-slide="next">
-            ›
-        </button>
-
-        </div>
-
-        
         <div class="py-5 container">
             <div class="row">
                 <div class="col-md-12 text-center">
@@ -188,116 +137,80 @@
 </script>
 
 <style>
-/* GLOBAL */
-.hero-carousel {
-  border-radius: 24px;
-  overflow: hidden;
-  box-shadow: 0 25px 60px rgba(0,0,0,0.25);
-}
-
-/* IMAGE */
-.hero-carousel img {
-  height: 70vh;
-  object-fit: cover;
-}
-
-/* OVERLAY */
-.carousel-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    to right,
-    rgba(0,0,0,0.55),
-    rgba(0,0,0,0.15)
-  );
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding-left: 8%;
-  color: #fff;
-}
-
-/* TEXT */
-.carousel-overlay h2 {
-  font-size: 52px;
-  font-weight: 900;
-  margin-bottom: 12px;
+    
+/* ===== ABOUT SECTION ===== */
+.main-heading {
+  font-size: 42px;
+  font-weight: 800;
+  color: #111827;
   letter-spacing: 1px;
+  margin-bottom: 10px;
 }
 
-.carousel-overlay p {
-  font-size: 20px;
-  max-width: 420px;
-  opacity: 0.9;
+.container p {
+  font-size: 16px;
+  color: #4b5563;
+  max-width: 800px;
+  margin: auto;
+  line-height: 1.8;
 }
 
-/* INDICATORS */
-.hero-indicators button {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background-color: #fff;
-  opacity: 0.4;
-  transition: 0.3s;
+/* ===== AVANTAGES ===== */
+.row.text-center .col-md-3 {
+  padding: 30px 15px;
+  transition: all 0.35s ease;
 }
 
-.hero-indicators .active {
+.row.text-center .col-md-3:hover {
+  transform: translateY(-10px);
+}
+
+.row.text-center img {
+  width: 55px;
+  height: auto;
+  margin-bottom: 15px;
+  opacity: 0.85;
+  transition: 0.3s ease;
+}
+
+.row.text-center .col-md-3:hover img {
   opacity: 1;
-  transform: scale(1.4);
+  transform: scale(1.1);
 }
 
-/* CONTROLS */
-.hero-control {
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  background: rgba(255,255,255,0.25);
-  color: white;
-  font-size: 32px;
-  border: none;
-  top: 50%;
-  transform: translateY(-50%);
-  backdrop-filter: blur(6px);
-  transition: 0.3s;
+.row.text-center h5 {
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  margin-top: 10px;
+  color: #111827;
 }
 
-.hero-control:hover {
-  background: rgba(255,255,255,0.45);
+.row.text-center p {
+  font-size: 14px;
+  color: #6b7280;
+  margin-top: 8px;
 }
 
-/* RESPONSIVE */
-@media (max-width: 768px) {
-  .hero-carousel img {
-    height: 50vh;
-  }
-
-  .carousel-overlay h2 {
-    font-size: 32px;
-  }
-
-  .carousel-overlay p {
-    font-size: 16px;
-  }
-}
-
+/* ===== DETAILS BUTTON ===== */
 .details-btn {
-    display: inline-block;
-    padding: 12px 30px;
-    background-color: #0e4c92; /* couleur principale */
-    color: #fff;
-    font-weight: bold;
-    text-transform: uppercase;
-    border-radius: 25px;
-    text-decoration: none;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+  display: inline-block;
+  padding: 12px 36px;
+  background: linear-gradient(90deg, #97446d, #210B5B);
+  color: #fff;
+  font-weight: 600;
+  font-size: 14px;
+  text-transform: uppercase;
+  border-radius: 50px;
+  text-decoration: none;
+  letter-spacing: 1px;
+  transition: all 0.35s ease;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.25);
 }
 
 .details-btn:hover {
-    background-color: #07366f; /* couleur hover plus foncée */
-    transform: translateY(-3px);
-    box-shadow: 0 6px 10px rgba(0,0,0,0.3);
+  transform: translateY(-3px);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.35);
 }
- 
 
 </style>

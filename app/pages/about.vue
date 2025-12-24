@@ -30,14 +30,21 @@
                     </div>
 
                     <!-- RIGHT AVATARS -->
-                    <div class="col-md-6">
-                        <div class="circle-wrapper">
+                    <div class="col-md-6 d-flex justify-content-center">
+                      <div class="circle-wrapper">
 
+                        <!-- circles -->
                         <div class="circle big"></div>
                         <div class="circle medium"></div>
 
-                        </div>
+                        <!-- avatars -->
+                        <img src="/img/avatar1.jpg" class="avatar avatar-1" alt="">
+                        <img src="/img/avatar2.jpg" class="avatar avatar-2" alt="">
+                        <img src="/img/avatar3.jpg" class="avatar avatar-3" alt="">
+
+                      </div>
                     </div>
+
                     <!-- Avantages Section -->
                     <div class="row text-center mt-5">
                         <div class="col-md-3">
@@ -83,61 +90,160 @@
     }
 </script>
 <style>
-.client-feedback {
-  background: #f7f7f7;
-  padding: 80px 0;
+/* ===== ABOUT SECTION ===== */
+.main-heading {
+  font-size: 42px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  color: #12233c;
 }
 
-.title {
-  font-weight: bold;
-  margin-bottom: 20px;
+.underline {
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(90deg, #97446d, #210B5B);
+  margin: 14px auto;
+  border-radius: 4px;
+}
+
+.container p {
+  max-width: 720px;
+  margin: 0 auto;
+  font-size: 16px;
+  color: #555;
+  line-height: 1.8;
+}
+
+/* ===== CLIENT FEEDBACK ===== */
+.client-feedback {
+  background: linear-gradient(135deg, #f9f9fb, #f1f1f6);
+  padding: 90px 0;
+  margin-top: 80px;
+  border-radius: 40px;
+}
+
+.client-feedback .title {
+  font-size: 34px;
+  font-weight: 800;
+  margin-bottom: 25px;
+  color: #12233c;
 }
 
 .feedback-text {
-  color: #777;
-  font-size: 16px;
-  line-height: 1.7;
+  font-size: 17px;
+  line-height: 1.8;
+  color: #555;
+  position: relative;
 }
 
 .feedback-text i {
-  color: #ccc;
-  font-size: 20px;
+  color: #97446d;
+  font-size: 22px;
 }
 
 .client-name {
-  margin-top: 15px;
-  font-weight: bold;
+  margin-top: 20px;
+  font-weight: 700;
+  color: #210B5B;
 }
 
-/* circles */
+/* ===== CIRCLES DESIGN ===== */
 .circle-wrapper {
   position: relative;
-  width: 300px;
-  height: 300px;
+  width: 320px;
+  height: 320px;
   margin: auto;
 }
 
 .circle {
   position: absolute;
   border-radius: 50%;
-  border: 1px solid #ddd;
+  border: 2px solid rgba(151,68,109,0.3);
 }
 
 .circle.big {
-  width: 300px;
-  height: 300px;
-  top: 0;
-  left: 0;
+  width: 320px;
+  height: 320px;
+  animation: rotateSlow 18s linear infinite;
 }
 
 .circle.medium {
-  width: 200px;
-  height: 200px;
+  width: 220px;
+  height: 220px;
   top: 50px;
   left: 50px;
+  border-color: rgba(33,11,91,0.35);
+  animation: rotateSlowReverse 14s linear infinite;
 }
 
-/* avatars */
+@keyframes rotateSlow {
+  from { transform: rotate(0); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes rotateSlowReverse {
+  from { transform: rotate(360deg); }
+  to { transform: rotate(0); }
+}
+
+/* ===== AVANTAGES ===== */
+.row.text-center.mt-5 > div {
+  background: #fff;
+  border-radius: 22px;
+  padding: 30px 20px;
+  transition: all 0.35s ease;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+}
+
+.row.text-center.mt-5 > div:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 45px rgba(0,0,0,0.15);
+}
+
+.row.text-center.mt-5 img {
+  filter: drop-shadow(0 6px 10px rgba(0,0,0,0.15));
+}
+
+.row.text-center.mt-5 h5 {
+  margin-top: 18px;
+  font-weight: 700;
+  color: #12233c;
+}
+
+.row.text-center.mt-5 p {
+  font-size: 14px;
+  color: #666;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .main-heading {
+    font-size: 32px;
+  }
+
+  .client-feedback {
+    border-radius: 20px;
+  }
+
+  .circle-wrapper {
+    width: 260px;
+    height: 260px;
+    margin-top: 40px;
+  }
+
+  .circle.big {
+    width: 260px;
+    height: 260px;
+  }
+
+  .circle.medium {
+    width: 170px;
+    height: 170px;
+    top: 45px;
+    left: 45px;
+  }
+}
+/* ===== avatar ===== */
 .avatar {
   position: absolute;
   width: 60px;
@@ -145,11 +251,18 @@
   border-radius: 50%;
   object-fit: cover;
   border: 3px solid #fff;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+  transition: transform 0.3s;
 }
 
+.avatar:hover {
+  transform: scale(1.15);
+}
+
+/* positions */
 .avatar-1 {
   top: -10px;
-  left: 120px;
+  left: 130px;
 }
 
 .avatar-2 {
@@ -159,7 +272,8 @@
 
 .avatar-3 {
   bottom: 20px;
-  left: 30px;
+  left: 40px;
 }
+
 
 </style>

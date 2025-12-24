@@ -4,11 +4,11 @@
     margin-bottom: 14px;
 }
 .underline {
-    height: 4px;
-    width: 150px;
-    background-color: rgb(42, 29, 177);
-    border-radius: 8px;
-    margin-bottom: 16px;
+  width: 100px;
+  height: 4px;
+  background: linear-gradient(90deg, #97446d, #210B5B);
+  border-radius: 4px;
+  margin-bottom: 20px;
 }
 .bg-gray {
   background-color: #f2f2f2;

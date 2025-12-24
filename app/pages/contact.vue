@@ -98,7 +98,7 @@ body {
   font-size: 40px;
   font-weight: 700;
   text-align: center;
-  background: linear-gradient(90deg, #210B5B, #5C3AFF);
+  background:  linear-gradient(135deg, #0c0e29, #1044a5);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   margin-bottom: 30px;
@@ -162,7 +162,7 @@ body {
 }
 
 .btn-red:hover {
-  background: rgb(12,41,205);
+  background: rgb(28, 45, 141);
   transform: translateY(-2px);
   box-shadow: 0 6px 12px rgba(12,41,205,0.3);
 }
