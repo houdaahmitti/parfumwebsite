@@ -6,7 +6,7 @@
 .underline {
   width: 100px;
   height: 4px;
-  background: linear-gradient(90deg, #97446d, #210B5B);
+  background:linear-gradient(90deg, #171342, #472fdd);
   border-radius: 4px;
   margin-bottom: 20px;
 }
@@ -35,6 +35,38 @@
   align-items: center;
   justify-content: center;
   background: #fafafa;
+  position: relative;
+}
+
+.badge-discount {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: #e63946;
+    color: #fff;
+    padding: 6px 12px;
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 20px;
+    z-index: 2;
+}
+
+.price-box {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.old-price {
+    text-decoration: line-through;
+    color: #999;
+    font-size: 14px;
+}
+
+.price {
+    color: #e63946;
+    font-size: 18px;
+    font-weight: bold;
 }
 
 .product-image img {

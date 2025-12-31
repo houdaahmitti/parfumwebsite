@@ -196,7 +196,7 @@
   position: absolute;
   top: -4px;
   right: -4px;
-  background: linear-gradient(90deg, #97446d, #210B5B);
+  background:linear-gradient(90deg, #171342, #472fdd);
   color: white;
   font-size: 10px;        
   font-weight: 600;

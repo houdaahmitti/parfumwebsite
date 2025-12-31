@@ -1,14 +1,21 @@
 <template>
         <div class="py-5 container">
-            <div class="row">
-                <div class="col-md-12 text-center">
-                    <h1 class="main-heading">About Us</h1>
-                    <div class="underline mx-auto"></div>
-                    <p>
-                        Love Parfum est votre plateforme dédiée aux passionnés de parfums, offrant une expérience unique de shopping en ligne au Maroc. Nous sélectionnons avec soin des fragrances authentiques et originales, pour vous proposer des senteurs raffinées et inoubliables.
-                    </p>
-                </div>
-            </div>
+    <!-- About Section -->
+    <section class="py-5 container">
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <h2 class="main-heading">À propos de nous</h2>
+          <div class="underline mx-auto"></div>
+          <div class="about-box mx-auto mt-4">
+            <p>
+              Love Parfum est votre plateforme dédiée aux passionnés de parfums, offrant
+              une expérience unique de shopping en ligne au Maroc. Nous sélectionnons
+              avec soin des fragrances authentiques et originales.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
 
             <!-- Avantages Section -->
             <div class="row text-center mt-5">
@@ -35,7 +42,7 @@
             </div>
             <div class="text-end mt-4">
             <NuxtLink to="/about" class="details-btn">
-                Details
+                Details →
             </NuxtLink>
             </div>
         </div>
@@ -45,7 +52,7 @@
                     <div class="row">
 
                         <div class="col-md-12 text-center">
-                            <h1 class="main-heading">Parfum</h1>
+                            <h1 class="main-heading">Offres Spéciales Parfums</h1>
                             <div class="underline mx-auto"></div>
                         </div>  
 
@@ -53,7 +60,8 @@
                         <div class="product-card alt-style">
 
                             <div class="product-image">
-                            <img src="/img/parfum/Bleu de Chanel.webp" alt="Bleu de Chanel">
+                                <span class="badge-discount">-60%</span>
+                                <img src="/img/parfum/Bleu de Chanel.webp" alt="Bleu de Chanel">
 
                             <div class="overlay">
                                 <button class="btn-cart">
@@ -63,9 +71,12 @@
                             </div>
 
                             <div class="product-body">
-                            <h3>Bleu de Chanel</h3>
-                            <p>Parfum Homme · 100ml</p>
-                            <span class="price">199,00 DH</span>
+                                <h3>Bleu de Chanel</h3>
+                                <p>Parfum Homme · 100ml</p>
+                                <div class="price-box">
+                                    <span class="old-price">249,00 DH</span>
+                                    <span class="price">199,00 DH</span>
+                                </div>
                             </div>
 
                         </div>
@@ -75,7 +86,8 @@
                         <div class="product-card alt-style">
 
                             <div class="product-image">
-                            <img src="/img/parfum/Chanel_n5.webp" alt="Chanel_n5">
+                                <span class="badge-discount">-50%</span>
+                                <img src="/img/parfum/Chanel_n5.webp" alt="Chanel_n5">
 
                             <div class="overlay">
                                 <button class="btn-cart">
@@ -87,8 +99,10 @@
                             <div class="product-body">
                             <h3>Chanel N5</h3>
                             <p>Parfum Femme · 100ml</p>
-                            <span class="price">299,00 DH</span>
-                            </div>
+                                <div class="price-box">
+                                    <span class="old-price">849,00 DH</span>
+                                    <span class="price">399,00 DH</span>
+                                </div>                            </div>
 
                         </div>
                         </div>
@@ -98,6 +112,7 @@
                         <div class="product-card alt-style">
 
                             <div class="product-image">
+                                <span class="badge-discount">-50%</span>
                             <img src="/img/parfum/dior-jadore.webp" alt="dior-jadore">
 
                             <div class="overlay">
@@ -110,12 +125,18 @@
                             <div class="product-body">
                             <h3>Dior J’adore</h3>
                             <p>Parfum Femme · 50ml</p>
-                            <span class="price">200,00 DH</span>
-                            </div>
+                                <div class="price-box">
+                                    <span class="old-price">949,00 DH</span>
+                                    <span class="price">599,00 DH</span>
+                                </div>                            </div>
 
                         </div>
                         </div>
-
+                        <div class="text-end mt-4">
+                        <NuxtLink to="/about" class="details-btn">
+                            More →
+                        </NuxtLink>
+                        </div>
 
                    </div>
                 </div>
@@ -139,64 +160,69 @@
 <style>
     
 /* ===== ABOUT SECTION ===== */
+/* Boîte À propos */
+.about-box {
+  background-color: #f9f9f9;
+  padding: 25px 30px;
+  border-radius: 15px;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+  font-size: 1.1rem;
+  color: #333;
+}
+
+/* Titre principal */
 .main-heading {
-  font-size: 42px;
-  font-weight: 800;
-  color: #111827;
-  letter-spacing: 1px;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #222;
   margin-bottom: 10px;
 }
 
-.container p {
-  font-size: 16px;
-  color: #4b5563;
-  max-width: 800px;
-  margin: auto;
-  line-height: 1.8;
-}
 
-/* ===== AVANTAGES ===== */
+
+/* Cartes avantages */
 .row.text-center .col-md-3 {
-  padding: 30px 15px;
-  transition: all 0.35s ease;
+  transition: transform 0.3s, box-shadow 0.3s;
+  padding: 20px;
+  border-radius: 12px;
+  background-color: #fff;
+  margin-bottom: 20px;
 }
 
 .row.text-center .col-md-3:hover {
-  transform: translateY(-10px);
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.15);
 }
 
-.row.text-center img {
-  width: 55px;
-  height: auto;
+/* Images avantages */
+.row.text-center .col-md-3 img {
   margin-bottom: 15px;
-  opacity: 0.85;
-  transition: 0.3s ease;
 }
 
-.row.text-center .col-md-3:hover img {
-  opacity: 1;
-  transform: scale(1.1);
+/* Bouton Details */
+.details-btn {
+  display: inline-block;
+  background-color: #ff6f61;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background-color 0.3s;
 }
 
-.row.text-center h5 {
-  font-size: 15px;
-  font-weight: 700;
-  letter-spacing: 1px;
-  margin-top: 10px;
-  color: #111827;
-}
-
-.row.text-center p {
-  font-size: 14px;
-  color: #6b7280;
-  margin-top: 8px;
+.details-btn:hover {
+  background-color: #e65a50;
 }
 
 /* ===== DETAILS BUTTON ===== */
 .details-btn {
   display: inline-block;
   padding: 12px 36px;
-  background: linear-gradient(90deg, #97446d, #210B5B);
+  background: linear-gradient(90deg, #171342, #472fdd);
   color: #fff;
   font-weight: 600;
   font-size: 14px;
