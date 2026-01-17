@@ -1,10 +1,20 @@
 <template>
   <section class="auth-wrapper">
     <div class="auth-card">
-      <h1 class="title">Bienvenue</h1>
-      <p class="subtitle">Connectez-vous à votre compte</p>
+      <h1 class="title">Créer un compte</h1>
+      <p class="subtitle">Rejoignez Love Parfum</p>
 
-      <form @submit.prevent="login">
+      <form @submit.prevent="register">
+        <div class="form-group">
+          <label>Nom complet</label>
+          <input
+            type="text"
+            v-model.trim="form.name"
+            placeholder="Votre nom complet"
+            required
+          />
+        </div>
+
         <div class="form-group">
           <label>Email</label>
           <input
@@ -25,63 +35,80 @@
           />
         </div>
 
+        <div class="form-group">
+          <label>Confirmer le mot de passe</label>
+          <input
+            type="password"
+            v-model.trim="form.confirmPassword"
+            placeholder="••••••••"
+            required
+          />
+        </div>
+
         <button :disabled="loading">
-          {{ loading ? 'Connexion en cours...' : 'Se connecter' }}
+          {{ loading ? 'Création du compte...' : 'S’inscrire' }}
         </button>
 
         <p v-if="error" class="error">{{ error }}</p>
 
         <p class="switch">
-          Pas de compte ?
-          <NuxtLink to="/signup">S’inscrire</NuxtLink>
+          Vous avez déjà un compte ?
+          <NuxtLink to="/login">Se connecter</NuxtLink>
         </p>
-
       </form>
     </div>
   </section>
 </template>
 
-
 <script>
 export default {
-  name: 'AccountPage',
+  name: 'SignupPage',
 
   data() {
     return {
       loading: false,
       error: '',
       form: {
+        name: '',
         email: '',
-        password: ''
+        password: '',
+        confirmPassword: ''
       }
     }
   },
 
   head() {
     return {
-      title: 'Login | Love Parfum',
+      title: 'Sign Up | Love Parfum',
       meta: [
         {
           hid: 'description',
           name: 'description',
-          content: 'Login to your Love Parfum account'
+          content: 'Create your Love Parfum account'
         }
       ]
     }
   },
 
   methods: {
-    async login() {
+    async register() {
       this.error = ''
+
+      if (this.form.password !== this.form.confirmPassword) {
+        this.error = 'Passwords do not match'
+        return
+      }
+
       this.loading = true
 
       try {
+        // 🔁 API signup (بدلها بالbackend ديالك)
         await new Promise(resolve => setTimeout(resolve, 1500))
 
-        // success
-        this.$router.push('/')
-      } catch (err) {
-        this.error = 'Invalid email or password'
+        // success ➜ مشي للـ login
+        this.$router.push('/login')
+      } catch (e) {
+        this.error = 'Something went wrong'
       } finally {
         this.loading = false
       }
@@ -135,7 +162,6 @@ input {
   margin-top: 6px;
   border-radius: 8px;
   border: 1px solid #ddd;
-  transition: 0.2s;
 }
 
 input:focus {
@@ -156,7 +182,6 @@ button {
 
 button:disabled {
   opacity: 0.7;
-  cursor: not-allowed;
 }
 
 .error {
@@ -164,6 +189,7 @@ button:disabled {
   color: #952215;
   text-align: center;
 }
+
 .switch {
   margin-top: 16px;
   text-align: center;
@@ -174,5 +200,4 @@ button:disabled {
   color: #5348e1;
   font-weight: 600;
 }
-
 </style>
