@@ -41,54 +41,35 @@
   </section>
 </template>
 
+<script setup>
+import { reactive, ref } from "vue";
+import api from "../../services/api";
 
-<script>
-export default {
-  name: 'AccountPage',
+const form = reactive({
+  email: "",
+  password: "",
+});
 
-  data() {
-    return {
-      loading: false,
-      error: '',
-      form: {
-        email: '',
-        password: ''
-      }
-    }
-  },
+const loading = ref(false);
+const error = ref("");
 
-  head() {
-    return {
-      title: 'Login | Love Parfum',
-      meta: [
-        {
-          hid: 'description',
-          name: 'description',
-          content: 'Login to your Love Parfum account'
-        }
-      ]
-    }
-  },
+const login = async () => {
+  try {
+    loading.value = true;
+    error.value = "";
 
-  methods: {
-    async login() {
-      this.error = ''
-      this.loading = true
-
-      try {
-        await new Promise(resolve => setTimeout(resolve, 1500))
-
-        // success
-        this.$router.push('/')
-      } catch (err) {
-        this.error = 'Invalid email or password'
-      } finally {
-        this.loading = false
-      }
-    }
+    const res = await api.post("/auth/login", form);
+    localStorage.setItem("token", res.data.token);
+    localStorage.setItem("user", JSON.stringify(res.data.user));
+    router.push("/");
+  } catch (err) {
+    error.value = err.response?.data?.message || "Erreur de connexion";
+  } finally {
+    loading.value = false;
   }
-}
+};
 </script>
+
 
 <style scoped>
 .auth-wrapper {

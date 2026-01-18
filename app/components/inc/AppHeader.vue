@@ -51,7 +51,7 @@
               <i class="fas fa-search"></i>
             </button>
 
-            <NuxtLink to="/account" class="icon-btn">
+            <NuxtLink to="/login" class="icon-btn">
               <i class="fas fa-user"></i>
             </NuxtLink>
 

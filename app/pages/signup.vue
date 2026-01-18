@@ -60,62 +60,44 @@
   </section>
 </template>
 
-<script>
-export default {
-  name: 'SignupPage',
+<script setup>
+import { reactive, ref } from "vue";
+import api from "../../services/api";
 
-  data() {
-    return {
-      loading: false,
-      error: '',
-      form: {
-        name: '',
-        email: '',
-        password: '',
-        confirmPassword: ''
-      }
-    }
-  },
 
-  head() {
-    return {
-      title: 'Sign Up | Love Parfum',
-      meta: [
-        {
-          hid: 'description',
-          name: 'description',
-          content: 'Create your Love Parfum account'
-        }
-      ]
-    }
-  },
+const form = reactive({
+  name: "",
+  email: "",
+  password: "",
+  confirmPassword: "",
+});
 
-  methods: {
-    async register() {
-      this.error = ''
+const loading = ref(false);
+const error = ref("");
 
-      if (this.form.password !== this.form.confirmPassword) {
-        this.error = 'Passwords do not match'
-        return
-      }
-
-      this.loading = true
-
-      try {
-        // 🔁 API signup (بدلها بالbackend ديالك)
-        await new Promise(resolve => setTimeout(resolve, 1500))
-
-        // success ➜ مشي للـ login
-        this.$router.push('/login')
-      } catch (e) {
-        this.error = 'Something went wrong'
-      } finally {
-        this.loading = false
-      }
-    }
+const register = async () => {
+  if (form.password !== form.confirmPassword) {
+    error.value = "Les mots de passe ne correspondent pas";
+    return;
   }
-}
+
+  try {
+    loading.value = true;
+    error.value = "";
+
+    await api.post("/auth/signup", {
+      name: form.name,
+      email: form.email,
+      password: form.password,
+    });
+  } catch (err) {
+    error.value = err.response?.data?.message || "Erreur";
+  } finally {
+    loading.value = false;
+  }
+};
 </script>
+
 
 <style scoped>
 .auth-wrapper {
