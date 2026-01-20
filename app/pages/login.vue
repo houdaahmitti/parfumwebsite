@@ -41,9 +41,14 @@
   </section>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { reactive, ref } from "vue";
+import { useRouter } from "vue-router";
 import api from "../../services/api";
+import { useAuth } from "../composables/useAuth";
+
+const router = useRouter();
+const { setAuth } = useAuth();
 
 const form = reactive({
   email: "",
@@ -59,10 +64,11 @@ const login = async () => {
     error.value = "";
 
     const res = await api.post("/auth/login", form);
-    localStorage.setItem("token", res.data.token);
-    localStorage.setItem("user", JSON.stringify(res.data.user));
+
+    setAuth(res.data.token, res.data.user);
+
     router.push("/");
-  } catch (err) {
+  } catch (err: any) {
     error.value = err.response?.data?.message || "Erreur de connexion";
   } finally {
     loading.value = false;

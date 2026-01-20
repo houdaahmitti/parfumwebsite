@@ -60,42 +60,52 @@
   </section>
 </template>
 
+
 <script setup>
-import { reactive, ref } from "vue";
-import api from "../../services/api";
+  import { reactive, ref } from "vue";
+  import { useRouter } from "vue-router";
+  import api from "../../services/api";
 
+  const router = useRouter();
 
-const form = reactive({
-  name: "",
-  email: "",
-  password: "",
-  confirmPassword: "",
-});
+  const form = reactive({
+    name: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+  });
 
-const loading = ref(false);
-const error = ref("");
+  const loading = ref(false);
+  const error = ref("");
 
-const register = async () => {
-  if (form.password !== form.confirmPassword) {
-    error.value = "Les mots de passe ne correspondent pas";
-    return;
-  }
+  const register = async () => {
+    if (form.password !== form.confirmPassword) {
+      error.value = "Les mots de passe ne correspondent pas";
+      return;
+    }
+      if (!form.name || !form.email || !form.password) {
+      error.value = "Tous les champs sont requis";
+      return;
+    }
 
-  try {
-    loading.value = true;
-    error.value = "";
+    try {
+      loading.value = true;
+      error.value = "";
 
-    await api.post("/auth/signup", {
-      name: form.name,
-      email: form.email,
-      password: form.password,
-    });
-  } catch (err) {
-    error.value = err.response?.data?.message || "Erreur";
-  } finally {
-    loading.value = false;
-  }
-};
+      await api.post("/auth/signup", {
+        fullName: form.name,   
+        email: form.email,
+        password: form.password,
+      });
+
+      router.push("/login");
+
+    } catch (err) {
+      error.value = err.response?.data?.message || "Erreur";
+    } finally {
+      loading.value = false;
+    }
+  };
 </script>
 
 

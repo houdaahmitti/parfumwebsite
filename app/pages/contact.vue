@@ -1,33 +1,50 @@
 <template>
   <div class="contact-container">
-
     <h1>Formulaire de Contact</h1>
 
-    <form class="contact-box">
+    <form class="contact-box" @submit.prevent="handleSubmit">
 
       <!-- Nom & Prénom -->
       <div class="mb-3">
-        <label for="nom" class="form-label">Nom et Prénom :</label>
-        <input id="nom" type="text" class="form-control" placeholder="Nom et Prénom">
+        <label class="form-label">Nom et Prénom :</label>
+        <input
+          type="text"
+          class="form-control"
+          v-model="form.nom"
+          placeholder="Nom et Prénom"
+          required
+        />
       </div>
 
       <!-- Adresse -->
       <div class="mb-3">
-        <label for="adresse" class="form-label">Adresse :</label>
-        <input id="adresse" type="text" class="form-control" placeholder="Votre adresse">
+        <label class="form-label">Adresse :</label>
+        <input
+          type="text"
+          class="form-control"
+          v-model="form.adresse"
+          placeholder="Votre adresse"
+          required
+        />
       </div>
 
       <!-- Téléphone -->
       <div class="mb-3">
-        <label for="telephone" class="form-label">N° Téléphone :</label>
-        <input id="telephone" type="tel" class="form-control" placeholder="+212 6 XX XX XX XX">
+        <label class="form-label">N° Téléphone :</label>
+        <input
+          type="tel"
+          class="form-control"
+          v-model="form.telephone"
+          placeholder="+212 6 XX XX XX XX"
+          required
+        />
       </div>
 
       <!-- Sujet -->
       <div class="mb-3">
-        <label for="sujet" class="form-label">Sujet :</label>
-        <select id="sujet" class="form-control">
-          <option>Sélectionner l'objet de la demande</option>
+        <label class="form-label">Sujet :</label>
+        <select class="form-control" v-model="form.sujet" required>
+          <option value="">Sélectionner l'objet de la demande</option>
           <option>Support</option>
           <option>Réclamation</option>
           <option>Demande d'information</option>
@@ -36,42 +53,83 @@
 
       <!-- Message -->
       <div class="mb-3">
-        <label for="message" class="form-label">Message :</label>
-        <textarea id="message" class="form-control" rows="4" placeholder="Votre message..."></textarea>
+        <label class="form-label">Message :</label>
+        <textarea
+          class="form-control"
+          rows="4"
+          v-model="form.message"
+          placeholder="Votre message..."
+          required
+        ></textarea>
       </div>
 
       <!-- Checkbox -->
       <div class="check">
-        <input type="checkbox" id="accept">
+        <input type="checkbox" v-model="form.accept" id="accept" />
         <label for="accept">
           En cochant cette case, j’accepte de recevoir des informations.
         </label>
       </div>
 
       <!-- Bouton -->
-      <button type="submit" class="btn-red">
-        Envoyer
+      <button type="submit" class="btn-red" :disabled="loading">
+        {{ loading ? "Envoi..." : "Envoyer" }}
       </button>
 
-    </form>
+      <p v-if="success" class="success">{{ success }}</p>
+      <p v-if="error" class="error">{{ error }}</p>
 
+    </form>
   </div>
 </template>
 
-<script>
-export default {
-  name: "Contact",
-  head() {
-    return {
-      title: "Contact Us",
-      meta: [
-        { hid: "description", name: "description", content: "Love Parfum - Contact Us" },
-        { hid: "keywords", name: "keywords", content: "Vue, Nuxt, JavaScript, Contact Us" }
-      ]
-    };
+<script setup>
+import { reactive, ref } from "vue";
+import api from "../services/api";
+
+const loading = ref(false);
+const success = ref("");
+const error = ref("");
+
+const form = reactive({
+  nom: "",
+  adresse: "",
+  telephone: "",
+  sujet: "",
+  message: "",
+  accept: false,
+});
+
+const handleSubmit = async () => {
+  if (!form.accept) {
+    error.value = "Vous devez accepter de recevoir des informations.";
+    return;
+  }
+
+  loading.value = true;
+  error.value = "";
+  success.value = "";
+
+  try {
+    await api.post("/contact", form);
+    success.value = "Votre message a été envoyé avec succès ✅";
+
+    // reset
+    form.nom = "";
+    form.adresse = "";
+    form.telephone = "";
+    form.sujet = "";
+    form.message = "";
+    form.accept = false;
+
+  } catch (err) {
+    error.value = err.response?.data?.message || "Erreur lors de l'envoi";
+  } finally {
+    loading.value = false;
   }
 };
 </script>
+
 
 <style>
 
