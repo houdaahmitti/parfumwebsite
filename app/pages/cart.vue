@@ -23,9 +23,9 @@
         </thead>
 
         <tbody>
-          <tr v-for="item in cart" :key="item.id">
+          <tr v-for="item in cart" :key="item._id">
             <td>
-              <button class="remove" @click="remove(item.id)">×</button>
+              <button class="remove" @click="remove(item._id)">×</button>
             </td>
             <td>
               <strong>{{ item.name }}</strong>
@@ -37,9 +37,13 @@
                 type="number"
                 min="1"
                 v-model.number="item.quantity"
+                @change="updateQuantity(item._id, item.quantity)"
               />
             </td>
             <td>{{ item.price * item.quantity }} د.م.</td>
+          </tr>
+          <tr v-if="cart.length === 0">
+            <td colspan="5" class="text-center">Votre panier est vide ❌</td>
           </tr>
         </tbody>
       </table>
@@ -52,7 +56,7 @@
           placeholder="Code promo"
         />
         <button @click="applyPromo">Appliquer le code promo</button>
-        <button class="update">Mettre à jour le panier</button>
+        <button class="update" @click="updateAll">Mettre à jour le panier</button>
       </div>
 
       <!-- RIGHT : TOTAL -->
@@ -74,7 +78,7 @@
           <span>{{ total }} DH</span>
         </div>
 
-        <button class="checkout">
+        <button class="checkout" @click="checkout">
           Valider la commande
         </button>
       </div>
@@ -82,46 +86,45 @@
   </section>
 </template>
 
-<script>
-export default {
-  name: 'CartPage',
+<script setup>
+import { ref, computed } from "vue";
 
-  data() {
-    return {
-      promoCode: '',
-      shipping: 40,
-      cart: [
+import { cart, removeFromCart, updateQuantity } from "../../services/cart";
 
-      ]
-    }
-  },
+// Réactifs
+const promoCode = ref("");
+const shipping = ref(40);
 
-  computed: {
-    subtotal() {
-      return this.cart.reduce(
-        (sum, item) => sum + item.price * item.quantity,
-        0
-      )
-    },
-    total() {
-      return this.subtotal + this.shipping
-    }
-  },
+// Calculs
+const subtotal = computed(() =>
+  cart.value.reduce((sum, item) => sum + item.price * item.quantity, 0)
+);
+const total = computed(() => subtotal.value + shipping.value);
 
-  methods: {
-    remove(id) {
-      this.cart = this.cart.filter(item => item.id !== id)
-    },
-    applyPromo() {
-      if (this.promoCode === 'LOVE10') {
-        this.shipping = 0
-        alert('Code promo appliqué')
-      } else {
-        alert('Code promo invalide')
-      }
-    }
+// Actions
+const remove = (id) => removeFromCart(id);
+
+const applyPromo = () => {
+  if (promoCode.value === "LOVE10") {
+    shipping.value = 0;
+    alert("Code promo appliqué ✅");
+  } else {
+    alert("Code promo invalide ❌");
   }
-}
+};
+
+const updateAll = () => {
+  cart.value.forEach((item) => updateQuantity(item._id, item.quantity));
+  alert("Panier mis à jour ✅");
+};
+
+const checkout = () => {
+  if (cart.value.length === 0) {
+    alert("Votre panier est vide ❌");
+    return;
+  }
+  alert("Commande validée ✅");
+};
 </script>
 
 <style scoped>

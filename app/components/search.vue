@@ -33,15 +33,6 @@
       </div>
     </div>
 
-    <!-- Fabricants -->
-    <div class="filter-section">
-      <p class="section-title">Fabricants</p>
-      <select v-model="selectedManufacturer">
-        <option value="">--</option>
-        <option v-for="f in manufacturers" :key="f">{{ f }}</option>
-      </select>
-    </div>
-
     <!-- Litrage -->
     <div class="filter-section scroll">
       <p class="section-title">Litrage</p>
@@ -59,41 +50,52 @@
   </div>
 </template>
 
+
 <script>
 export default {
+  emits: ["change"],
+
   data() {
     return {
       searchBrand: "",
-      price: 185,
-
+      price: 2000,
 
       brands: [
-        { name: "ACQUA DI PARMA", count: 30 },
-        { name: "ARMANI", count: 41 },
-        { name: "AZZARO", count: 12 },
-        { name: "BON PARFUMEUR", count: 8 },
-        { name: "BURBERRY", count: 5 },
-        { name: "BVLGARI", count: 7 },
-        { name: "CALVIN KLEIN", count: 9 },
-        { name: "CAROLINA HERRERA", count: 4 },
-        { name: "CARON", count: 10 },
-        { name: "CARTIER", count: 9 },
+        { "name": "CHANEL", "count": 2 },
+        { "name": "DIOR", "count": 1 },
+        { "name": "GUCCI", "count": 1 },
+        { "name": "VERSACE", "count": 1 },
+        { "name": "LANCÔME", "count": 1 },
+        { "name": "PACO RABANNE", "count": 1 },
+        { "name": "YSL", "count": 1 },
+        { "name": "HUGO BOSS", "count": 1 },
+        { "name": "MARC JACOBS", "count": 1 },
+        { "name": "ARMANI", "count": 1 },
+        { "name": "CHLOÉ", "count": 1 },
+        { "name": "DOLCE & GABBANA", "count": 1 },
+        { "name": "TOM FORD", "count": 1 },
+        { "name": "GIVENCHY", "count": 1 },
+        { "name": "JEAN PAUL GAULTIER", "count": 1 },
+        { "name": "VIKTOR & ROLF", "count": 1 },
+        { "name": "Giorgio Armani", "count": 1 },
+        { "name": "HERMÈS", "count": 1 },
+        { "name": "BVLGARI", "count": 1 }
       ],
-
-      manufacturers: ["France", "Italie", "USA"],
+      
       volumes: [
-        { name: "30ml", count: 15 },
-        { name: "40ml", count: 1 },
-        { name: "50ml", count: 48 },
-        { name: "60ml", count: 4 },
-        { name: "75ml", count: 19 },
-        { name: "100ml", count: 30 },
-        { name: "125ml", count: 3 },
-        { name: "150ml", count: 2 },
+        { "name": "30ml", "count": 0 },
+        { "name": "40ml", "count": 0 },
+        { "name": "50ml", "count": 0 },
+        { "name": "60ml", "count": 0 },
+        { "name": "75ml", "count": 2 },
+        { "name": "90ml", "count": 2 },
+        { "name": "100ml", "count": 11 },
+        { "name": "125ml", "count": 1 }
       ],
 
       selectedBrands: [],
       selectedManufacturer: "",
+      selectedVolumes: [],
     };
   },
 
@@ -103,9 +105,29 @@ export default {
         b.name.toLowerCase().includes(this.searchBrand.toLowerCase())
       );
     },
+
+    filters() {
+      return {
+        search: this.searchBrand,
+        brands: this.selectedBrands,
+        manufacturer: this.selectedManufacturer,
+        volumes: this.selectedVolumes,
+        price: this.price,
+      };
+    }
   },
+
+  watch: {
+    filters: {
+      deep: true,
+      handler(newFilters) {
+        this.$emit("change", newFilters);
+      }
+    }
+  }
 };
 </script>
+
 
 <style scoped>
 /* ===== Container ===== */

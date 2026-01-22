@@ -1,5 +1,5 @@
 <template>
-        <div class="py-5 container">
+  <div class="py-5 container">
     <!-- About Section -->
     <section class="py-5 container">
       <div class="row">
@@ -17,144 +17,114 @@
       </div>
     </section>
 
-            <!-- Avantages Section -->
-            <div class="row text-center mt-5">
-                <div class="col-md-3">
-                    <img src="/img/icone-livraison.webp" alt="Livraison Express" style="width:70px; height:60px;">
-                    <h5 class="mt-3">LIVRAISON EXPRESS</h5>
-                    <p>Entre 24 et 48 heures partout au Maroc</p>
+    <!-- Avantages Section -->
+    <div class="row text-center mt-5">
+      <div class="col-md-3">
+        <img src="/img/icone-livraison.webp" alt="Livraison Express" style="width:70px; height:60px;">
+        <h5 class="mt-3">LIVRAISON EXPRESS</h5>
+        <p>Entre 24 et 48 heures partout au Maroc</p>
+      </div>
+      <div class="col-md-3">
+        <img src="/img/icone-SUPPORT.webp" alt="Support 24/7" style="width:50px; height:50px;">
+        <h5 class="mt-3">24/7 SUPPORT</h5>
+        <p>Conseil personnalisé</p>
+      </div>
+      <div class="col-md-3">
+        <img src="/img/icone-authentiques.webp" alt="Parfums authentiques" style="width:50px; height:50px;">
+        <h5 class="mt-3">Parfums authentiques</h5>
+        <p>Des fragrances originales aux notes raffinées</p>
+      </div>
+      <div class="col-md-3">
+        <img src="/img/icone-fidélité.webp" alt="Avantages fidélité" style="width:50px; height:50px;">
+        <h5 class="mt-3">Avantages fidélité</h5>
+        <p>5% de votre commande sur vos prochains achats</p>
+      </div>
+    </div>
+
+    <div class="text-end mt-4">
+      <NuxtLink to="/about" class="details-btn">Details →</NuxtLink>
+    </div>
+
+    <!-- Offres Spéciales Parfums -->
+    <div class="py-5 bg-gray">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12 text-center">
+            <h1 class="main-heading">Offres Spéciales Parfums</h1>
+            <div class="underline mx-auto"></div>
+          </div>
+
+          <!-- Loader / Error -->
+          <div v-if="loading" class="col-12 text-center my-5">Chargement des produits...</div>
+          <div v-if="error" class="col-12 text-center text-danger my-5">{{ error }}</div>
+
+          <!-- Afficher 3 produits maximum -->
+          <div class="col-md-4" v-for="product in firstThreeProducts" :key="product._id">
+            <div class="product-card alt-style">
+              <div class="product-image">
+                <span v-if="product.discount > 0" class="badge-discount">-{{ product.discount }}%</span>
+                <img :src="product.image" :alt="product.name">
+                <div class="overlay">
+                  <button class="btn-cart" @click="addToCartHandler(product)">
+                    <i class="fas fa-shopping-cart"></i> Ajouter au panier
+                  </button>
                 </div>
-                <div class="col-md-3">
-                    <img src="/img/icone-SUPPORT.webp" alt="Support 24/7" style="width:50px; height:50px;">
-                    <h5 class="mt-3">24/7 SUPPORT</h5>
-                    <p>Conseil personnalisé</p>
+              </div>
+              <div class="product-body">
+                <h3>{{ product.name }}</h3>
+                <p>{{ product.category }} · {{ product.volume }}</p>
+                <div class="price-box">
+                  <span class="old-price">{{ product.oldPrice }} DH</span>
+                  <span class="price">{{ product.price }} DH</span>
                 </div>
-                <div class="col-md-3">
-                    <img src="/img/icone-authentiques.webp" alt="Parfums authentiques" style="width:50px; height:50px;">
-                    <h5 class="mt-3">Parfums authentiques</h5>
-                    <p>Des fragrances originales aux notes raffinées</p>
-                </div>
-                <div class="col-md-3">
-                    <img src="/img/icone-fidélité.webp" alt="Avantages fidélité" style="width:50px; height:50px;">
-                    <h5 class="mt-3">Avantages fidélité</h5>
-                    <p>5% de votre commande sur vos prochains achats</p>
-                </div>
+                <!-- Bouton pour rediriger vers page Homme ou Femme -->
+                <NuxtLink
+                  :to="product.category === 'Homme' ? '/parfum/homme' : '/parfum/femme'"
+                  class="details-btn mt-2 d-block text-center"
+                >
+                  Voir plus →
+                </NuxtLink>
+              </div>
             </div>
-            <div class="text-end mt-4">
-            <NuxtLink to="/about" class="details-btn">
-                Details →
-            </NuxtLink>
-            </div>
+          </div>
+
         </div>
-
-            <div class="py-5 bg-gray">
-                <div class="container">
-                    <div class="row">
-
-                        <div class="col-md-12 text-center">
-                            <h1 class="main-heading">Offres Spéciales Parfums</h1>
-                            <div class="underline mx-auto"></div>
-                        </div>  
-
-                        <div class="col-md-4">
-                        <div class="product-card alt-style">
-
-                            <div class="product-image">
-                                <span class="badge-discount">-60%</span>
-                                <img src="/img/parfum/Bleu de Chanel.webp" alt="Bleu de Chanel">
-
-                            <div class="overlay">
-                                <button class="btn-cart">
-                                <i class="fas fa-shopping-cart"></i> Ajouter au panier
-                                </button>
-                            </div>
-                            </div>
-
-                            <div class="product-body">
-                                <h3>Bleu de Chanel</h3>
-                                <p>Parfum Homme · 100ml</p>
-                                <div class="price-box">
-                                    <span class="old-price">249,00 DH</span>
-                                    <span class="price">199,00 DH</span>
-                                </div>
-                            </div>
-
-                        </div>
-                        </div>
-
-                        <div class="col-md-4">
-                        <div class="product-card alt-style">
-
-                            <div class="product-image">
-                                <span class="badge-discount">-50%</span>
-                                <img src="/img/parfum/Chanel_n5.webp" alt="Chanel_n5">
-
-                            <div class="overlay">
-                                <button class="btn-cart">
-                                <i class="fas fa-shopping-cart"></i> Ajouter au panier
-                                </button>
-                            </div>
-                            </div>
-
-                            <div class="product-body">
-                            <h3>Chanel N5</h3>
-                            <p>Parfum Femme · 100ml</p>
-                                <div class="price-box">
-                                    <span class="old-price">849,00 DH</span>
-                                    <span class="price">399,00 DH</span>
-                                </div>                            </div>
-
-                        </div>
-                        </div>
-
-
-                        <div class="col-md-4">
-                        <div class="product-card alt-style">
-
-                            <div class="product-image">
-                                <span class="badge-discount">-50%</span>
-                            <img src="/img/parfum/dior-jadore.webp" alt="dior-jadore">
-
-                            <div class="overlay">
-                                <button class="btn-cart">
-                                <i class="fas fa-shopping-cart"></i> Ajouter au panier
-                                </button>
-                            </div>
-                            </div>
-
-                            <div class="product-body">
-                            <h3>Dior J’adore</h3>
-                            <p>Parfum Femme · 50ml</p>
-                                <div class="price-box">
-                                    <span class="old-price">949,00 DH</span>
-                                    <span class="price">599,00 DH</span>
-                                </div>                            </div>
-
-                        </div>
-                        </div>
-                        <div class="text-end mt-4">
-                        <NuxtLink to="/about" class="details-btn">
-                            More →
-                        </NuxtLink>
-                        </div>
-
-                   </div>
-                </div>
-           </div>
+      </div>
+    </div>
+  </div>
 </template>
-<script>
-    export default {
-    name: 'index',
-    head() {
-        return {
-        title: 'Home page',
-        meta: [
-            { hid: 'description', name: 'description', content: 'Love Parfum- Home page' },
-            { hid: 'keywords', name: 'keywords', content: 'Vue, Nuxt, JavaScript, Home page' }
-        ]
-        }
-    }
-    }
+
+<script setup>
+import { ref, onMounted, computed } from "vue";
+import { addToCart } from "../../services/cart";
+
+const products = ref([]);
+const loading = ref(false);
+const error = ref(null);
+
+// Charger tous les produits
+const loadProducts = async () => {
+  loading.value = true;
+  try {
+    const res = await fetch("http://localhost:5000/api/products");
+    if (!res.ok) throw new Error("Erreur lors du chargement des produits");
+    products.value = await res.json();
+  } catch (err) {
+    error.value = err.message;
+  } finally {
+    loading.value = false;
+  }
+};
+
+// Prendre les 3 premiers produits
+const firstThreeProducts = computed(() => products.value.slice(0, 3));
+
+const addToCartHandler = (product) => {
+  addToCart(product);
+  alert(`Produit "${product.name}" ajouté au panier ✅`);
+};
+
+onMounted(loadProducts);
 </script>
 
 <style>

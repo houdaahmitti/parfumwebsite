@@ -1,6 +1,7 @@
 <template>
   <div>
-      <nav class="navbar navbar-expand-lg bg-body-tertiary navbar-light bg-white shadow">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg bg-body-tertiary navbar-light bg-white shadow">
       <div class="container">
         <a class="navbar-brand" href="#">
           <img src="/img/parfum1.png" alt="Logo" class="logo-img d-inline-block align-text-top">
@@ -17,108 +18,84 @@
               <NuxtLink to="/about" class="nav-link">About Us</NuxtLink>
             </li>
             <li class="nav-item dropdown">
-              <a
-                class="nav-link dropdown-toggle"
-                href="#"
-                role="button"
-                data-bs-toggle="dropdown"
-              >
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
                 Parfum
               </a>
               <ul class="dropdown-menu">
-                <li>
-                  <NuxtLink to="/parfum/homme" class="dropdown-item">
-                    Parfum Homme
-                  </NuxtLink>
-                </li>
-                <li>
-                  <NuxtLink to="/parfum/femme" class="dropdown-item">
-                    Parfum Femme
-                  </NuxtLink>
-                </li>
+                <li><NuxtLink to="/parfum/homme" class="dropdown-item">Parfum Homme</NuxtLink></li>
+                <li><NuxtLink to="/parfum/femme" class="dropdown-item">Parfum Femme</NuxtLink></li>
               </ul>
             </li>
             <li class="nav-item">
               <NuxtLink to="/contact" class="nav-link">Contact Us</NuxtLink>
             </li>    
-            </ul>
+          </ul>
           
           <div class="d-flex align-items-center ms-auto gap-2">
-
             <input class="form-control search-input" type="search" placeholder="Search" />
-
-            <button class="icon-btn" type="button">
-              <i class="fas fa-search"></i>
-            </button>
-
-            <NuxtLink to="/login" class="icon-btn">
-              <i class="fas fa-user"></i>
-            </NuxtLink>
-
+            <button class="icon-btn" type="button"><i class="fas fa-search"></i></button>
+            <NuxtLink to="/login" class="icon-btn"><i class="fas fa-user"></i></NuxtLink>
             <NuxtLink to="/cart" class="icon-btn position-relative">
               <i class="fas fa-shopping-cart"></i>
-              <span class="cart-badge">00.0dh</span>
+              <span class="cart-badge">{{ totalCart.toFixed(2) }} DH</span>
             </NuxtLink>
-
           </div>
         </div>
       </div>
     </nav>
 
+    <!-- Carousel Hero -->
     <div id="carouselHero" class="carousel slide carousel-fade hero-carousel" data-bs-ride="carousel" data-bs-interval="3000">
-
-    <!-- Indicators -->
-    <div class="carousel-indicators hero-indicators">
+      <!-- Indicators -->
+      <div class="carousel-indicators hero-indicators">
         <button type="button" data-bs-target="#carouselHero" data-bs-slide-to="0" class="active"></button>
         <button type="button" data-bs-target="#carouselHero" data-bs-slide-to="1"></button>
         <button type="button" data-bs-target="#carouselHero" data-bs-slide-to="2"></button>
-    </div>
+      </div>
 
-    <!-- Slides -->
-    <div class="carousel-inner">
-
-            <div class="carousel-item active">
-            <img src="/img/page1.1.jpg" class="d-block w-100" alt="slide 1">
-            <div class="carousel-overlay">
-                <h2>Love Parfum</h2>
-                <p>Découvrez l’élégance absolue</p>
-            </div>
-            </div>
-
-            <div class="carousel-item">
-            <img src="/img/page1.2.jpg" class="d-block w-100" alt="slide 2">
-            <div class="carousel-overlay">
-                <h2>Parfums d’Exception</h2>
-                <p>Une signature qui vous ressemble</p>
-            </div>
-            </div>
-
-            <div class="carousel-item">
-            <img src="/img/page1.3.jpg" class="d-block w-100" alt="slide 3">
-            <div class="carousel-overlay">
-                <h2>Luxe & Authenticité</h2>
-                <p>Des marques iconiques</p>
-            </div>
-            </div>
-            </div>
-
-            <!-- Controls -->
-            <button class="carousel-control-prev hero-control" type="button"
-                    data-bs-target="#carouselHero" data-bs-slide="prev">
-                ‹
-            </button>
-
-            <button class="carousel-control-next hero-control" type="button"
-                    data-bs-target="#carouselHero" data-bs-slide="next">
-                ›
-            </button>
-
+      <!-- Slides -->
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img src="/img/page1.1.jpg" class="d-block w-100" alt="slide 1">
+          <div class="carousel-overlay text-center text-white">
+            <h2>Love Parfum</h2>
+            <p>Découvrez l’élégance absolue</p>
+          </div>
         </div>
+        <div class="carousel-item">
+          <img src="/img/page1.2.jpg" class="d-block w-100" alt="slide 2">
+          <div class="carousel-overlay text-center text-white">
+            <h2>Parfums d’Exception</h2>
+            <p>Une signature qui vous ressemble</p>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <img src="/img/page1.3.jpg" class="d-block w-100" alt="slide 3">
+          <div class="carousel-overlay text-center text-white">
+            <h2>Luxe & Authenticité</h2>
+            <p>Des marques iconiques</p>
+          </div>
+        </div>
+      </div>
 
-   </div> 
+      <!-- Controls -->
+      <button class="carousel-control-prev hero-control" type="button" data-bs-target="#carouselHero" data-bs-slide="prev">
+        ‹
+      </button>
+      <button class="carousel-control-next hero-control" type="button" data-bs-target="#carouselHero" data-bs-slide="next">
+        ›
+      </button>
+    </div>
+  </div>
 </template>
 
 <script setup>
+import { computed } from "vue";
+import { cart } from "../../../services/cart";
+
+const totalCart = computed(() => {
+  return cart.value.reduce((sum, item) => sum + item.price * item.quantity, 0);
+});
 </script>
 
 <style scoped>

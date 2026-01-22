@@ -1,114 +1,140 @@
 <template>
   <div class="homme-page">
+
     <!-- Left : Search -->
     <aside class="left-filter">
-      <Search />
+      <Search @change="updateFilters" />
     </aside>
 
     <!-- Right : Content -->
     <main class="right-content">
       <h1 class="page-title">Parfums Homme</h1>
 
-      <div class="products-placeholder">
-                <div class="container">
-                    <div class="row">
+      <div v-if="loading" class="text-center">Chargement...</div>
+      <div v-else class="container">
+        <div class="row">
+          <div
+            class="col-md-4"
+            v-for="p in filteredProducts"
+            :key="p._id"
+          >
+            <div class="product-card alt-style">
 
-                        <div class="col-md-12 text-center">
-                            <h1 class="main-heading">Offres Spéciales Parfums</h1>
-                            <div class="underline mx-auto"></div>
-                        </div>  
+              <div class="product-image">
+                <img :src="p.image" :alt="p.name" />
 
-                        <div class="col-md-4">
-                        <div class="product-card alt-style">
-
-                            <div class="product-image">
-
-                                <img src="/img/parfum/Bleu de Chanel.webp" alt="Bleu de Chanel">
-
-                            <div class="overlay">
-                                <button class="btn-cart">
-                                <i class="fas fa-shopping-cart"></i> Ajouter au panier
-                                </button>
-                            </div>
-                            </div>
-
-                            <div class="product-body">
-                                <h3>Bleu de Chanel</h3>
-                                <p>Parfum Homme · 100ml</p>
-                                <div class="price-box">
-                                    <span class="old-price">249,00 DH</span>
-                                    <span class="price">199,00 DH</span>
-                                </div>
-                            </div>
-
-                        </div>
-                        </div>
-
-                        <div class="col-md-4">
-                        <div class="product-card alt-style">
-
-                            <div class="product-image">
-                                <img src="/img/parfum/Chanel_n5.webp" alt="Chanel_n5">
-
-                            <div class="overlay">
-                                <button class="btn-cart">
-                                <i class="fas fa-shopping-cart"></i> Ajouter au panier
-                                </button>
-                            </div>
-                            </div>
-
-                            <div class="product-body">
-                            <h3>Chanel N5</h3>
-                            <p>Parfum Femme · 100ml</p>
-                                <div class="price-box">
-                                    <span class="old-price">849,00 DH</span>
-                                    <span class="price">399,00 DH</span>
-                                </div>                            </div>
-
-                        </div>
-                        </div>
-
-
-                        <div class="col-md-4">
-                        <div class="product-card alt-style">
-
-                            <div class="product-image">
-                            <img src="/img/parfum/dior-jadore.webp" alt="dior-jadore">
-
-                            <div class="overlay">
-                                <button class="btn-cart">
-                                <i class="fas fa-shopping-cart"></i> Ajouter au panier
-                                </button>
-                            </div>
-                            </div>
-
-                            <div class="product-body">
-                            <h3>Dior J’adore</h3>
-                            <p>Parfum Femme · 50ml</p>
-                                <div class="price-box">
-                                    <span class="old-price">949,00 DH</span>
-                                    <span class="price">599,00 DH</span>
-                                </div>                            </div>
-
-                        </div>
-                        </div>
-                   </div>
+                <div class="overlay">
+                  <button class="btn-cart" @click="addToCartHandler(p)">
+                    <i class="fas fa-shopping-cart"></i>
+                    Ajouter au panier
+                  </button>
                 </div>
               </div>
+
+              <div class="product-body">
+                <h3>{{ p.name }}</h3>
+                <p>Parfum Homme · {{ p.volume }}</p>
+
+                <div class="price-box">
+                  <span v-if="p.oldPrice" class="old-price">
+                    {{ p.oldPrice }} DH
+                  </span>
+                  <span class="price">
+                    {{ p.price }} DH
+                  </span>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <p v-if="filteredProducts.length === 0" class="text-center">
+            Aucun produit trouvé ❌
+          </p>
+
+        </div>
+      </div>
+
+      <div v-if="error" class="text-danger text-center">{{ error }}</div>
     </main>
   </div>
 </template>
 
 <script>
 import Search from "@/components/search.vue";
+import api from "../../../services/api";
+import { addToCart } from "../../../services/cart";
+import { ref, computed } from "vue";
 
 export default {
   name: "homme",
-  components: {
-    Search,
-  },
+  components: { Search },
+
+  setup() {
+    const products = ref([]);
+    const filters = ref({});
+    const loading = ref(false);
+    const error = ref("");
+
+    const filteredProducts = computed(() => {
+      return products.value.filter((p) => {
+        if (filters.value.search &&
+            !p.brand.toLowerCase().includes(filters.value.search.toLowerCase()))
+          return false;
+
+        if (filters.value.brands?.length &&
+            !filters.value.brands.includes(p.brand))
+          return false;
+
+        if (filters.value.volumes?.length &&
+            !filters.value.volumes.includes(p.volume))
+          return false;
+
+        if (p.price > (filters.value.price || 99999))
+          return false;
+
+        return true;
+      });
+    });
+
+    const updateFilters = (f) => {
+      filters.value = f;
+    };
+
+    const loadProducts = async () => {
+      loading.value = true;
+      error.value = "";
+      try {
+        const res = await api.get("/products?category=homme");
+        products.value = res.data;
+      } catch (err) {
+        console.error("❌ Erreur chargement produits:", err);
+        error.value = "Impossible de charger les produits.";
+      } finally {
+        loading.value = false;
+      }
+    };
+
+    const addToCartHandler = (product) => {
+      addToCart(product);
+      alert(`Produit "${product.name}" ajouté au panier ✅`);
+    };
+
+    loadProducts();
+
+    return {
+      products,
+      filters,
+      filteredProducts,
+      updateFilters,
+      addToCartHandler,
+      loading,
+      error
+    };
+  }
 };
 </script>
+
 
 <style scoped>
 
